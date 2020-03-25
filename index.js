@@ -18,7 +18,11 @@ const run = async () => {
   await installPackages();
   await addScripts();
   await updateTemplates();
-  console.log("All done");
+  console.log(
+    `
+Your ${appName.bold} service has been created successfully!
+Move to the new directory and start your service by running `.green + "npm run start:dev".blue
+  );
 };
 
 const createGqlService = () => {
@@ -64,7 +68,19 @@ const packages = [
 const installPackages = () => {
   return new Promise(resolve => {
     console.log("\nInstalling packages...\n".cyan);
-    shell.exec(`cd ${appName} && npm install --save ${packages.join(" ")}`, () => {
+
+    setTimeout(() => {
+      console.log("Still installing packages...don't worry!".cyan);
+    }, 5000);
+
+    setTimeout(() => {
+      console.log("Installing last packages...don't Ctrl+C me please".cyan);
+    }, 10000);
+
+    shell.exec(`cd ${appName} && npm install --save ${packages.join(" ")}`, (code, stdout, stderr) => {
+      if (code) {
+        console.log(`Exit code: ${code}`.red);
+      }
       console.log("\nFinished installing packages\n".green);
       resolve();
     });
@@ -72,7 +88,8 @@ const installPackages = () => {
 };
 
 const scripts = {
-  start: "./node_modules/nodemon/bin/nodemon.js ./src/index.js"
+  "start:dev": "NODE_ENV='development' ./node_modules/nodemon/bin/nodemon.js ./src/index.js",
+  "start:prod": "./node_modules/nodemon/bin/nodemon.js ./src/index.js"
 };
 
 const addScripts = () => {
