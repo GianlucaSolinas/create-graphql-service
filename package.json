@@ -1,6 +1,6 @@
 {
   "name": "create-graphql-service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,9 @@
   },
   "bin": {
     "create-graphql-service": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GianlucaSolinas/create-graphql-service.git"
   }
 }
