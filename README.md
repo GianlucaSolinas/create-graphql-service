@@ -27,7 +27,7 @@ Create a [GraphQL Federation](https://www.apollographql.com/docs/apollo-server/f
  cd my-graphql-service-name
  
  // npm start:dev will add "development" as global variable
- npm start:dev
+ npm run start:dev
  ```
  
 Then open [http://localhost:3000/graphql](http://localhost:3000/graphql) to see and test your new service on [GraphQL Playground](https://github.com/prisma-labs/graphql-playground).
